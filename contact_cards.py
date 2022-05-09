@@ -1,5 +1,7 @@
+from faker import Faker 
+
 class Card:
-    def __init__(self, name, surname, company, role, cell, email):
+    def __init__(self, name, surname, company, role, cell='', email=''):
         self.name = name
         self.surname = surname
         self.company = company
@@ -23,10 +25,11 @@ class BaseContact(Card):
   
 
 class BusinessContact(Card):
-    def __init__(self, company_cell, company_email, *args, **kwargs):
+    def __init__(self, company_cell, company_email,  *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.company_cell = company_cell
         self.company_email = company_email
+        
     
     def contact1(self):
         return f'Kontaktuję się z {self.name} {self.surname} dzwoniąc na {self.company_cell}'
@@ -36,8 +39,8 @@ class BusinessContact(Card):
         return len(self.name)+len(self.surname)
    
     
-name1=BaseContact("John", "Doe", "Solaris", "VP", "+49-153926354", "john@solaris.com")
-name2=BusinessContact("Jola", "Boska", "Solaris", "Manager", "+28-264819911", "jola@solaris.com")
+name1=BaseContact(name="John", surname="Doe", company="Solaris", role="VP", cell="+49-153926354", email="john@solaris.com")
+name2=BusinessContact(name="Jola", surname="Boska", company="Solaris", role="Manager", company_cell="+28-264819911", company_email="jola@solaris.com")
 
 print(name1.counting)
 print(name1.contact())

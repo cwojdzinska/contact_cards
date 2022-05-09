@@ -1,5 +1,3 @@
-from faker import Faker 
-
 class Card:
     def __init__(self, name, surname, company, role, cell='', email=''):
         self.name = name
